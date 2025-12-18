@@ -1,0 +1,148 @@
+/* auth.css - Professional, Compact & Responsive */
+
+/* 1. Layout & Background */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary); /* Black background from main.css */
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* 2. Main Container (The Card) */
+.auth-container {
+    background: var(--white);
+    width: 100%;
+    margin-top: 80px;
+    max-width: 400px; /* Compact width as requested */
+    padding: 2.5rem;
+    position: relative;
+    z-index: 5;
+    /* Brutalist style hard shadow using Alky secondary red */
+    box-shadow: 12px 12px 0px var(--secondary); 
+    animation: fadeInUp 0.6s ease-out; /* Uses animation defined in main.css */
+}
+
+/* 3. Form States */
+.auth-form-box {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.auth-form-box.active {
+    display: block;
+}
+
+/* 4. Typography */
+.auth-container h2 {
+    font-family: 'Bebas Neue', sans-serif; /* Brand font */
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-dark);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.9rem;
+    border: 2px solid #EEEEEE;
+    font-family: 'Outfit', sans-serif; /* Body font */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--secondary); /* Red highlight on focus */
+}
+
+/* 5. Validation & Errors */
+.error-msg {
+    color: var(--secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 5px;
+    display: block;
+    min-height: 1em; /* Prevents layout jumping */
+}
+
+/* 6. Interactive Elements */
+.auth-btn {
+    width: 100%;
+    background: var(--primary);
+    color: var(--white);
+    padding: 1.1rem;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.auth-btn:hover {
+    background: var(--secondary); /* Turns red on hover */
+    transform: translateY(-2px);
+}
+
+.switch-form {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.switch-form a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid var(--secondary);
+    transition: color 0.2s;
+}
+
+.switch-form a:hover {
+    color: var(--secondary);
+}
+
+/* 7. Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* 8. Responsiveness */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 1.8rem;
+        max-width: 100%;
+        box-shadow: 8px 8px 0px var(--secondary);
+    }
+    
+    .auth-container h2 {
+        font-size: 2.5rem;
+    }
+
+    .auth-btn {
+        font-size: 1.4rem;
+        padding: 1rem;
+    }
+}
