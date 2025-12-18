@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALKY | Product Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a></div>
+    <ul class="nav-links">
+        <li><a href="catalog.html">Back to Catalog</a></li>
+        <li><a href="#">Cart (<span id="cart-count">0</span>)</a></li>
+    </ul>
+</nav>
+
+<!-- Content injected via JS -->
+<main id="product-detail-view" class="product-detail-container">
+    <div style="grid-column: 1/-1; text-align: center;">Loading...</div>
+</main>
+
+<footer style="margin-top: auto;">
+    <div class="footer-bottom">
+        <p>&copy; 2025 ALKY. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/catalog.js"></script> <!-- Reusing catalog js for cart logic/fetching -->
+
+<script>
+    // Inline logic for specific product page to keep it simple
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = parseInt(urlParams.get('id'));
+
+        fetch('../data/shoes.json')
+            .then(res => res.json())
+            .then(products => {
+                const product = products.find(p => p.id === id);
+                if(product) {
+                    const container = document.getElementById('product-detail-view');
+                    container.innerHTML = `
+                            <div class="detail-image-box">
+                                <img src="${product.image}" alt="${product.title}" class="detail-image">
+                            </div>
+                            <div class="detail-info">
+                                <span class="detail-brand">${product.brand}</span>
+                                <h1>${product.title}</h1>
+                                <div class="detail-price">$${product.price}</div>
+                                <p class="detail-desc">${product.description}</p>
+                                <p class="detail-desc">Category: ${product.category}</p>
+
+                                <div class="action-buttons">
+                                    <button class="add-cart-btn" onclick="addToCart('${product.title}')">ADD TO CART</button>
+                                    <a href="catalog.html" class="back-btn">BACK</a>
+                                </div>
+                            </div>
+                        `;
+                }
+            });
+    });
+
+    function addToCart(title) {
+        // Simple Cart Logic
+        let cart = parseInt(localStorage.getItem('cartCount')) || 0;
+        cart++;
+        localStorage.setItem('cartCount', cart);
+        document.getElementById('cart-count').innerText = cart;
+
+        const btn = document.querySelector('.add-cart-btn');
+        btn.innerText = "ADDED!";
+        btn.style.background = "#333";
+        btn.disabled = true;
+    }
+</script>
+</body>
+</html>
