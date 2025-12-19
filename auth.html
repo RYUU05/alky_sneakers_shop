@@ -1,89 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ALKY - Login & Register</title>
+    <title>ALKY | Login & Register</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
     />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/auth.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="logo">
-        <a href="main.html" style="text-decoration: none; color: inherit"
-          >ALKY</a
-        >
-      </div>
-    </nav>
+</head>
+<body>
+<!-- ОБНОВЛЕННАЯ ШАПКА (С бургером и темой) -->
+<nav>
+    <div class="logo">
+        <a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a>
+    </div>
 
-    <main class="auth-page">
-      <div class="hero-bg"></div>
+    <div class="burger-menu" id="burger-menu">
+        <div class="line1"></div><div class="line2"></div><div class="line3"></div>
+    </div>
 
-      <div class="auth-container">
+    <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalog.html">Collection</a></li>
+    </ul>
+</nav>
+
+<main class="auth-page">
+    <!-- Фоновый узор -->
+    <div class="hero-bg"></div>
+
+    <div class="auth-container">
+
+        <!-- ФОРМА ВХОДА -->
         <div id="login-container" class="auth-form-box active">
-          <h2>LOGIN</h2>
-          <form id="login-form">
-            <div class="input-group">
-              <label>Email Address</label>
-              <input type="email" id="login-email" required />
+            <h2>LOGIN</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <!-- autocomplete="email" помогает браузеру подставить почту -->
+                    <input type="email" id="login-email" name="email" autocomplete="email" required />
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <!-- autocomplete="current-password" помогает вспомнить пароль -->
+                    <input type="password" id="login-password" name="password" autocomplete="current-password" required />
+                    <small class="error-msg" id="login-error"></small>
+                </div>
+                <button type="submit" class="auth-btn">LOG IN</button>
+            </form>
+            <div class="switch-form">
+                Don't have an account? <a href="#" id="show-signup">Create one</a>
             </div>
-            <div class="input-group">
-              <label>Password</label>
-              <input type="password" id="login-password" required />
-              <small class="error-msg" id="login-error"></small>
-            </div>
-            <button type="submit" class="auth-btn">LOG IN</button>
-          </form>
-          <div class="switch-form">
-            Don't have an account? <a href="#" id="show-signup">Create one</a>
-          </div>
         </div>
 
+        <!-- ФОРМА РЕГИСТРАЦИИ -->
         <div id="signup-container" class="auth-form-box">
-          <h2>REGISTER</h2>
-          <form id="signup-form">
-            <div class="input-group">
-              <label>Full Name</label>
-              <input
-                type="text"
-                id="reg-name"
-                placeholder="John Doe"
-                required
-              />
+            <h2>REGISTER</h2>
+            <form id="signup-form">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input
+                            type="text"
+                            id="reg-name"
+                            name="name"
+                            autocomplete="name"
+                            placeholder="John Doe"
+                            required
+                    />
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input
+                            type="email"
+                            id="reg-email"
+                            name="email"
+                            autocomplete="email"
+                            placeholder="yourname@gmail.com"
+                            required
+                    />
+                    <small class="error-msg" id="email-error"></small>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <!-- autocomplete="new-password" говорит браузеру: "предложи создать и сохранить пароль" -->
+                    <input
+                            type="password"
+                            id="reg-password"
+                            name="new-password"
+                            autocomplete="new-password"
+                            placeholder="8+ chars, digits & symbols"
+                            required
+                    />
+                    <small class="error-msg" id="pass-error"></small>
+                </div>
+                <button type="submit" class="auth-btn">CREATE ACCOUNT</button>
+            </form>
+            <div class="switch-form">
+                Already have an account? <a href="#" id="show-login">Sign in</a>
             </div>
-            <div class="input-group">
-              <label>Email Address</label>
-              <input
-                type="email"
-                id="reg-email"
-                placeholder="yourname@gmail.com"
-                required
-              />
-              <small class="error-msg" id="email-error"></small>
-            </div>
-            <div class="input-group">
-              <label>Password</label>
-              <input
-                type="password"
-                id="reg-password"
-                placeholder="8+ chars, digits & symbols"
-                required
-              />
-              <small class="error-msg" id="pass-error"></small>
-            </div>
-            <button type="submit" class="auth-btn">CREATE ACCOUNT</button>
-          </form>
-          <div class="switch-form">
-            Already have an account? <a href="#" id="show-login">Sign in</a>
-          </div>
         </div>
-      </div>
-    </main>
 
-    <script src="js/auth.js"></script>
-  </body>
+    </div>
+</main>
+
+<!-- Скрипты -->
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
 </html>
