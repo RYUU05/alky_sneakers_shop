@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALKY | Secure Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth.css"> <!-- Используем стили форм отсюда -->
+</head>
+<body>
+
+<!-- Nav (Скопируй шапку из index.html, чтобы было меню) -->
+<nav>
+    <div class="logo">
+        <a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a>
+    </div>
+
+    <!-- Бургер кнопка (видна только на телефоне) -->
+    <div class="burger-menu" id="burger-menu">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalog.html">Collection</a></li>
+
+        <!-- Ссылки для ГОСТЯ -->
+        <li class="guest-only"><a href="auth.html">Log In</a></li>
+
+        <!-- Ссылки для ПОЛЬЗОВАТЕЛЯ -->
+        <!-- Добавил user-only к корзине, если хочешь скрывать её для гостей -->
+        <li class="user-only" style="display:none;">
+            <a href="#" id="open-cart-btn">Cart (<span id="cart-count">0</span>)</a>
+        </li>
+        <li class="user-only" style="display:none;">
+            <a href="#" id="user-name-display" style="color: var(--secondary); font-weight:bold;">User</a>
+        </li>
+        <li class="user-only" style="display:none;">
+            <a href="#" id="logout-btn">Exit</a>
+        </li>
+
+    </ul>
+</nav>
+
+<section class="checkout-section" style="margin-top: 80px;">
+    <h1 style="font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 2rem;">CHECKOUT</h1>
+
+    <form id="checkout-form" class="checkout-container">
+
+        <!-- LEFT: Shipping Info -->
+        <div class="checkout-form-box">
+            <div class="checkout-header">SHIPPING DETAILS</div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label>First Name</label>
+                    <input type="text" id="fname" required>
+                </div>
+                <div class="input-group">
+                    <label>Last Name</label>
+                    <input type="text" id="lname" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Address</label>
+                <input type="text" placeholder="Street, House No." required>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label>City</label>
+                    <input type="text" required>
+                </div>
+                <div class="input-group">
+                    <label>Zip Code</label>
+                    <input type="text" required>
+                </div>
+            </div>
+
+            <div class="checkout-header" style="margin-top: 2rem;">PAYMENT (Simulated)</div>
+            <div class="input-group">
+                <label>Card Number</label>
+                <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label>Expiry</label>
+                    <input type="text" placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label>CVC</label>
+                    <input type="text" placeholder="123">
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Order Summary -->
+        <div class="checkout-summary-box">
+            <div class="checkout-header">YOUR ORDER</div>
+            <div id="order-items-list">
+                <!-- JS Injects items here -->
+            </div>
+
+            <div class="summary-total">
+                <span>TOTAL</span>
+                <span id="final-total">$0</span>
+            </div>
+
+            <button type="submit" class="place-order-btn">PLACE ORDER NOW</button>
+        </div>
+
+    </form>
+</section>
+
+<!-- Скрипт специально для этой страницы -->
+<script src="js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Заполняем данные пользователя если он вошел
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if(user) {
+            document.getElementById('email').value = user.email;
+            if(user.name) {
+                const names = user.name.split(' ');
+                document.getElementById('fname').value = names[0];
+                if(names[1]) document.getElementById('lname').value = names[1];
+            }
+        } else {
+            // Если не вошел, редирект
+            alert("Please login to checkout");
+            window.location.href = 'auth.html';
+        }
+
+        // 2. Рендерим товары в Summary
+        const cart = JSON.parse(localStorage.getItem('alky_cart')) || [];
+        const container = document.getElementById('order-items-list');
+        const totalEl = document.getElementById('final-total');
+        let total = 0;
+
+        if(cart.length === 0) {
+            window.location.href = 'catalog.html';
+        }
+
+        cart.forEach(item => {
+            total += item.price * item.qty;
+            const div = document.createElement('div');
+            div.className = 'summary-item';
+            div.innerHTML = `
+                    <span>${item.title} (x${item.qty})</span>
+                    <span>$${item.price * item.qty}</span>
+                `;
+            container.appendChild(div);
+        });
+
+        totalEl.innerText = '$' + total.toFixed(2);
+
+        // 3. Обработка заказа
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Имитация загрузки
+            const btn = document.querySelector('.place-order-btn');
+            const originalText = btn.innerText;
+            btn.innerText = "PROCESSING...";
+            btn.disabled = true;
+            btn.style.background = "#555";
+
+            setTimeout(() => {
+                alert("✅ ORDER SUCCESSFUL!\nThank you for shopping with ALKY.");
+                localStorage.removeItem('alky_cart');
+                window.location.href = 'index.html';
+            }, 2000);
+        });
+    });
+</script>
+</body>
+</html>

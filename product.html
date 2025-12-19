@@ -9,12 +9,55 @@
     <link rel="stylesheet" href="css/catalog.css">
 </head>
 <body>
+<div id="cart-overlay" class="cart-overlay"></div>
+<div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+        <h2>YOUR CART (<span id="drawer-count">0</span>)</h2>
+        <button id="close-cart" class="close-cart">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+        <!-- JS сюда вставит товары -->
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>TOTAL:</span>
+            <span id="cart-total-price">$0</span>
+        </div>
+        <button onclick="checkout()" class="checkout-btn">CHECKOUT</button>
+    </div>
+</div>
 
 <nav>
-    <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a></div>
-    <ul class="nav-links">
-        <li><a href="catalog.html">Back to Catalog</a></li>
-        <li><a href="#">Cart (<span id="cart-count">0</span>)</a></li>
+    <div class="logo">
+        <a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a>
+    </div>
+
+    <!-- Бургер кнопка (видна только на телефоне) -->
+    <div class="burger-menu" id="burger-menu">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalog.html">Collection</a></li>
+
+        <!-- Ссылки для ГОСТЯ -->
+        <li class="guest-only"><a href="auth.html">Log In</a></li>
+
+        <!-- Ссылки для ПОЛЬЗОВАТЕЛЯ -->
+        <!-- Добавил user-only к корзине, если хочешь скрывать её для гостей -->
+        <li class="user-only" style="display:none;">
+            <a href="#" id="open-cart-btn">Cart (<span id="cart-count">0</span>)</a>
+        </li>
+        <li class="user-only" style="display:none;">
+            <a href="#" id="user-name-display" style="color: var(--secondary); font-weight:bold;">User</a>
+        </li>
+        <li class="user-only" style="display:none;">
+            <a href="#" id="logout-btn">Exit</a>
+        </li>
+
     </ul>
 </nav>
 

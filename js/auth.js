@@ -4,70 +4,84 @@ document.addEventListener('DOMContentLoaded', () => {
     const showSignup = document.getElementById('show-signup');
     const showLogin = document.getElementById('show-login');
 
-    // Toggle logic
-    showSignup.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginContainer.classList.remove('active');
-        signupContainer.classList.add('active');
-    });
+    // Переключение между Входом и Регистрацией
+    if(showSignup) {
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginContainer.classList.remove('active');
+            signupContainer.classList.add('active');
+        });
+    }
 
-    showLogin.addEventListener('click', (e) => {
-        e.preventDefault();
-        signupContainer.classList.remove('active');
-        loginContainer.classList.add('active');
-    });
+    if(showLogin) {
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupContainer.classList.remove('active');
+            loginContainer.classList.add('active');
+        });
+    }
 
-    // --- REGISTRATION LOGIC ---
+    // --- ЛОГИКА РЕГИСТРАЦИИ ---
     const signupForm = document.getElementById('signup-form');
-    signupForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('reg-name').value;
-        const email = document.getElementById('reg-email').value;
-        const password = document.getElementById('reg-password').value;
-        
-        // Get existing users or create new array
-        let users = JSON.parse(localStorage.getItem('alky_users')) || [];
+    if(signupForm) {
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
 
-        // Check if email already registered
-        if (users.some(user => user.email === email)) {
-            document.getElementById('email-error').textContent = "Email already exists!";
-            return;
-        }
+            let users = JSON.parse(localStorage.getItem('alky_users')) || [];
 
-        // Save new user
-        users.push({ name, email, password });
-        localStorage.setItem('alky_users', JSON.stringify(users));
+            // Проверка: есть ли такой email
+            if (users.some(user => user.email === email)) {
+                document.getElementById('email-error').textContent = "Email already exists!";
+                return;
+            }
 
-        alert("Registration successful! Now you can log in.");
-        signupContainer.classList.remove('active');
-        loginContainer.classList.add('active');
-    });
+            // Сохраняем пользователя
+            users.push({ name, email, password });
+            localStorage.setItem('alky_users', JSON.stringify(users));
 
-    // --- LOGIN LOGIC ---
+            alert("Registration successful! Now please Log In.");
+
+            // Переключаем на форму входа (чтобы браузер предложил сохранить пароль)
+            signupContainer.classList.remove('active');
+            loginContainer.classList.add('active');
+
+            // Автозаполнение поля email для удобства
+            document.getElementById('login-email').value = email;
+        });
+    }
+
+    // --- ЛОГИКА ВХОДА ---
     const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        const loginError = document.getElementById('login-error');
+    if(loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const loginError = document.getElementById('login-error');
 
-        let users = JSON.parse(localStorage.getItem('alky_users')) || [];
+            let users = JSON.parse(localStorage.getItem('alky_users')) || [];
 
-        // Check if user exists
-        const user = users.find(u => u.email === email);
+            // Ищем пользователя
+            const user = users.find(u => u.email === email);
 
-        if (!user) {
-            loginError.textContent = "User not found! Please register first.";
-            return;
-        }
+            if (!user) {
+                loginError.textContent = "User not found! Please register first.";
+                return;
+            }
 
-        if (user.password !== password) {
-            loginError.textContent = "Incorrect password!";
-            return;
-        }
+            if (user.password !== password) {
+                loginError.textContent = "Incorrect password!";
+                return;
+            }
 
-        // Success
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        window.location.href = 'catalog.html';
-    });
+            // Успешный вход
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            // Редирект в профиль (или в каталог)
+            window.location.href = 'profile.html';
+        });
+    }
 });
