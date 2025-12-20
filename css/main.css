@@ -948,12 +948,45 @@ footer {
     font-size: 1rem;
 }
 
-/* Темная тема для модалки */
-[data-theme="dark"] .success-modal {
-    background: #1e1e1e;
-    border: 1px solid #333;
+/* Добавь это в main.css */
+
+.hero-image {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-[data-theme="dark"] .modal-text h3 { color: #fff; }
-[data-theme="dark"] .modal-text p { color: #aaa; }
 
+.hero-shoe-img {
+    width: 110%; /* Чуть больше контейнера для эффекта */
+    max-width: 650px; /* Ограничение ширины */
+    height: auto;
+    transform: rotate(-15deg); /* Поворот для динамики */
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6)); /* Глубокая тень */
+    animation: floatShoe 5s ease-in-out infinite; /* Анимация полета */
 
+    /* Маска, чтобы края фото плавно уходили в фон (для эстетики) */
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+/* Анимация полета вверх-вниз */
+@keyframes floatShoe {
+    0%, 100% { transform: translateY(0) rotate(-15deg); }
+    50% { transform: translateY(-25px) rotate(-12deg); }
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    .hero-shoe-img {
+        width: 100%;
+        transform: rotate(-5deg); /* Меньший поворот на телефоне */
+        margin-top: 2rem;
+    }
+
+    @keyframes floatShoe {
+        0%, 100% { transform: translateY(0) rotate(-5deg); }
+        50% { transform: translateY(-15px) rotate(-5deg); }
+    }
+}
