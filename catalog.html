@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/catalog.css">
 </head>
 <body>
+
+<!-- ВЫЕЗЖАЮЩАЯ КОРЗИНА (Нужна и здесь) -->
 <div id="cart-overlay" class="cart-overlay"></div>
 <div id="cart-drawer" class="cart-drawer">
     <div class="cart-header">
@@ -23,52 +25,48 @@
             <span>TOTAL:</span>
             <span id="cart-total-price">$0</span>
         </div>
+        <!-- Кнопка теперь ведет на checkout.html благодаря js/main.js -->
         <button onclick="checkout()" class="checkout-btn">CHECKOUT</button>
     </div>
 </div>
 
-<!-- Nav (Matches Index) -->
+<!-- НАВИГАЦИЯ -->
 <nav>
     <div class="logo">
         <a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a>
     </div>
 
-    <!-- Бургер кнопка (видна только на телефоне) -->
+    <!-- Бургер -->
     <div class="burger-menu" id="burger-menu">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
+        <div class="line1"></div><div class="line2"></div><div class="line3"></div>
     </div>
 
     <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="catalog.html">Collection</a></li>
 
-        <!-- Ссылки для ГОСТЯ -->
         <li class="guest-only"><a href="auth.html">Log In</a></li>
 
-        <!-- Ссылки для ПОЛЬЗОВАТЕЛЯ -->
-        <!-- Добавил user-only к корзине, если хочешь скрывать её для гостей -->
         <li class="user-only" style="display:none;">
             <a href="#" id="open-cart-btn">Cart (<span id="cart-count">0</span>)</a>
         </li>
         <li class="user-only" style="display:none;">
-            <a href="#" id="user-name-display" style="color: var(--secondary); font-weight:bold;">User</a>
+            <a href="profile.html" id="user-name-display" style="color: var(--secondary); font-weight:bold;">User</a>
         </li>
         <li class="user-only" style="display:none;">
             <a href="#" id="logout-btn">Exit</a>
         </li>
-
     </ul>
 </nav>
 
+<!-- КАТАЛОГ -->
 <section class="catalog-section">
     <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
         <h2>THE COLLECTION</h2>
-        <p>Filter by brand, style, or search specifically.</p>
+        <p style="margin: 0px">Filter by brand, style, or search specifically.</p>
     </div>
 
-    <!-- Filters -->
+    <!-- Фильтры -->
     <div class="filters-container">
         <div class="filter-group">
             <label>Search</label>
@@ -97,7 +95,7 @@
         </div>
     </div>
 
-    <!-- Grid -->
+    <!-- Сетка товаров -->
     <div id="product-grid" class="products-grid">
         <div id="loading">Loading Collection...</div>
     </div>

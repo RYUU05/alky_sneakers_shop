@@ -239,3 +239,43 @@
         padding-top: 8rem;
     }
 }
+
+/* --- PAGINATION (Кнопки страниц) --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: var(--text-dark);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-btn:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.page-btn.active {
+    background: var(--secondary);
+    color: #fff;
+    border-color: var(--secondary);
+}
+
+/* Темная тема для кнопок */
+[data-theme="dark"] .page-btn {
+    background: #1e1e1e;
+    border-color: #333;
+    color: #fff;
+}

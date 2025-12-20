@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('currentUser', JSON.stringify(user));
 
             // Редирект в профиль (или в каталог)
-            window.location.href = 'profile.html';
+            window.location.href = 'index.html';
         });
     }
 });
