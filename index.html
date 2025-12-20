@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALKY - Premium Sneaker Collection</title>
+    <title>STRIDE - Premium Sneaker Collection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-<!-- ВЫЕЗЖАЮЩАЯ КОРЗИНА (Обязательно в начале body) -->
+<!-- ВЫЕЗЖАЮЩАЯ КОРЗИНА -->
 <div id="cart-overlay" class="cart-overlay"></div>
 <div id="cart-drawer" class="cart-drawer">
     <div class="cart-header">
@@ -30,7 +29,6 @@
     </div>
 </div>
 
-<!-- НАВИГАЦИЯ -->
 <nav>
     <div class="logo">
         <a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a>
@@ -47,130 +45,141 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="catalog.html">Collection</a></li>
 
-        <!-- Ссылки для ГОСТЯ (видны, если не вошел) -->
+        <!-- Ссылки для ГОСТЯ -->
         <li class="guest-only"><a href="auth.html">Log In</a></li>
 
-        <!-- Ссылки для ПОЛЬЗОВАТЕЛЯ (видны, если вошел) -->
+        <!-- Ссылки для ПОЛЬЗОВАТЕЛЯ -->
+        <!-- Добавил user-only к корзине, если хочешь скрывать её для гостей -->
         <li class="user-only" style="display:none;">
             <a href="#" id="open-cart-btn">Cart (<span id="cart-count">0</span>)</a>
         </li>
         <li class="user-only" style="display:none;">
-            <a href="profile.html" id="user-name-display" style="color: var(--secondary); font-weight:bold;">User</a>
+            <a href="#" id="user-name-display" style="color: var(--secondary); font-weight:bold;">User</a>
         </li>
         <li class="user-only" style="display:none;">
             <a href="#" id="logout-btn">Exit</a>
         </li>
 
-
     </ul>
 </nav>
 
-<!-- ГЛАВНЫЙ БАННЕР -->
-<section class="hero" id="home">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1>
-                STEP INTO
-                <span class="highlight">GREATNESS</span>
-            </h1>
-            <p>Discover the finest collection of premium sneakers. From classic designs to cutting-edge innovations, find your perfect stride.</p>
-            <a href="catalog.html" class="cta-button">Explore Collection</a>
-        </div>
-        <div class="hero-image">
-            <img src="data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='sneakerGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF3B3F;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FFC700;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='translate(100, 150)'%3E%3Cellipse cx='200' cy='180' rx='180' ry='40' fill='rgba(0,0,0,0.2)'/%3E%3Cpath d='M 50 150 Q 80 100 150 90 L 350 80 Q 380 75 400 85 L 420 100 Q 425 110 420 120 L 380 140 L 350 160 Q 340 170 320 172 L 180 180 Q 120 185 80 170 Z' fill='url(%23sneakerGrad)' stroke='%23000' stroke-width='3'/%3E%3Cpath d='M 150 90 L 180 95 L 185 130 L 155 135 Z' fill='%23fff' opacity='0.3'/%3E%3Cpath d='M 250 85 L 280 83 L 282 125 L 252 127 Z' fill='%23fff' opacity='0.3'/%3E%3Ccircle cx='95' cy='160' r='15' fill='%23fff' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M 120 175 Q 180 178 240 176 Q 280 174 320 170' stroke='%23000' stroke-width='2' fill='none'/%3E%3Cpath d='M 380 85 L 420 95 L 415 108 L 375 98 Z' fill='rgba(0,0,0,0.3)'/%3E%3C/g%3E%3C/svg%3E" alt="Premium Sneaker">
-        </div>
-    </div>
-</section>
-
-<!-- БРЕНДЫ -->
-<section class="brands-section" id="products">
-    <div class="section-header">
-        <h2>FEATURED BRANDS</h2>
-        <p>Premium sneaker brands we carry</p>
-    </div>
-    <div class="brands-grid">
-        <div class="brand-card"><div class="brand-logo">NIKE</div></div>
-        <div class="brand-card"><div class="brand-logo">NEW BALANCE</div></div>
-        <div class="brand-card"><div class="brand-logo">ADIDAS</div></div>
-        <div class="brand-card"><div class="brand-logo">ASICS</div></div>
-        <div class="brand-card"><div class="brand-logo">CONVERSE</div></div>
-        <div class="brand-card"><div class="brand-logo">VANS</div></div>
-        <div class="brand-card"><div class="brand-logo">TIMBERLAND</div></div>
-    </div>
-</section>
-
-<!-- О НАС -->
-<section class="about-section" id="about">
-    <div class="about-content">
-        <div class="about-text">
-            <h2>WHERE <span>PASSION</span> MEETS PERFORMANCE</h2>
-            <p>Founded in 2024, STRIDE has become the destination for sneaker enthusiasts who demand excellence. We curate only the finest footwear from iconic brands and emerging designers.</p>
-            <p>Our mission is simple: to help you find the perfect pair that matches your lifestyle, performance needs, and personal style.</p>
-        </div>
-        <div class="about-stats">
-            <div class="stat-item">
-                <span class="stat-number">500+</span>
-                <span class="stat-label">Models</span>
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    STEP INTO
+                    <span class="highlight">GREATNESS</span>
+                </h1>
+                <p>Discover the finest collection of premium sneakers. From classic designs to cutting-edge innovations, find your perfect stride.</p>
+                <a href="catalog.html" class="cta-button">Explore Collection</a>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">50K+</span>
-                <span class="stat-label">Happy Customers</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">25+</span>
-                <span class="stat-label">Brands</span>
+            <div class="hero-image">
+                <img src="data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='sneakerGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF3B3F;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FFC700;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='translate(100, 150)'%3E%3Cellipse cx='200' cy='180' rx='180' ry='40' fill='rgba(0,0,0,0.2)'/%3E%3Cpath d='M 50 150 Q 80 100 150 90 L 350 80 Q 380 75 400 85 L 420 100 Q 425 110 420 120 L 380 140 L 350 160 Q 340 170 320 172 L 180 180 Q 120 185 80 170 Z' fill='url(%23sneakerGrad)' stroke='%23000' stroke-width='3'/%3E%3Cpath d='M 150 90 L 180 95 L 185 130 L 155 135 Z' fill='%23fff' opacity='0.3'/%3E%3Cpath d='M 250 85 L 280 83 L 282 125 L 252 127 Z' fill='%23fff' opacity='0.3'/%3E%3Ccircle cx='95' cy='160' r='15' fill='%23fff' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M 120 175 Q 180 178 240 176 Q 280 174 320 170' stroke='%23000' stroke-width='2' fill='none'/%3E%3Cpath d='M 380 85 L 420 95 L 415 108 L 375 98 Z' fill='rgba(0,0,0,0.3)'/%3E%3C/g%3E%3C/svg%3E" alt="Premium Sneaker">
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ПОДВАЛ (FOOTER) -->
-<footer id="contact">
-    <div class="footer-content">
-        <div class="footer-brand">
-            <h3>ALKY</h3>
-            <p>Your premium destination for the world's finest sneakers. Step into greatness with every pair.</p>
-            <div class="social-links">
-                <a href="#" class="social-icon">f</a>
-                <a href="#" class="social-icon">t</a>
-                <a href="#" class="social-icon">i</a>
-                <a href="#" class="social-icon">y</a>
+    <section class="brands-section" id="products">
+        <div class="section-header">
+            <h2>FEATURED BRANDS</h2>
+            <p>Premium sneaker brands we carry</p>
+        </div>
+        <div class="brands-grid">
+            <div class="brand-card">
+                <div class="brand-logo">NIKE</div>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">NEW BALANCE</div>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">ADIDAS</div>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">ASICS</div>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">CONVERSE</div>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">VANS</div>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">TIMBERLAND</div>
             </div>
         </div>
-        <div class="footer-column">
-            <h4>Shop</h4>
-            <ul class="footer-links">
-                <li><a href="catalog.html">New Arrivals</a></li>
-                <li><a href="catalog.html">Best Sellers</a></li>
-                <li><a href="catalog.html">Sale</a></li>
-                <li><a href="catalog.html">Collections</a></li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h4>Support</h4>
-            <ul class="footer-links">
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Shipping Info</a></li>
-                <li><a href="#">Returns</a></li>
-                <li><a href="#">Size Guide</a></li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h4>Contact</h4>
-            <ul class="footer-links">
-                <li>ABILAY XANA 1/1</li>
-                <li>KASKELEN</li>
-                <li>alky@gmail.com</li>
-                <li>+7 747 101 9394</li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 ALKY. All rights reserved. Designed with passion for sneaker culture.</p>
-    </div>
-</footer>
+    </section>
 
-<script src="js/main.js"></script>
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>WHERE <span>PASSION</span> MEETS PERFORMANCE</h2>
+                <p>Founded in 2024, STRIDE has become the destination for sneaker enthusiasts who demand excellence. We curate only the finest footwear from iconic brands and emerging designers.</p>
+                <p>Our mission is simple: to help you find the perfect pair that matches your lifestyle, performance needs, and personal style. Every sneaker in our collection is selected for its quality, innovation, and design excellence.</p>
+                <p>From street-ready classics to cutting-edge athletic performance, we bring you the shoes that define culture and push boundaries.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Models</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Brands</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>ALKY</h3>
+                <p>Your premium destination for the world's finest sneakers. Step into greatness with every pair.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">i</a>
+                    <a href="#" class="social-icon">y</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul class="footer-links">
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Sale</a></li>
+                    <li><a href="#">Collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li>ABILAY XANA 1/1</li>
+                    <li>KASKELEN</li>
+                    <li>alky@gmail.com</li>
+                    <li>+7 747 101 9394</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ALKY. All rights reserved. Designed with passion for sneaker culture.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
