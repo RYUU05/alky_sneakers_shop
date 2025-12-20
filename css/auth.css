@@ -1,32 +1,27 @@
-/* auth.css - Professional, Compact & Responsive */
 
-/* 1. Layout & Background */
 .auth-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary); /* Black background from main.css */
+    background: var(--primary); 
     position: relative;
     overflow: hidden;
     padding: 20px;
 }
 
-/* 2. Main Container (The Card) */
 .auth-container {
     background: var(--white);
     width: 100%;
     margin-top: 80px;
-    max-width: 400px; /* Compact width as requested */
+    max-width: 400px; 
     padding: 2.5rem;
     position: relative;
     z-index: 5;
-    /* Brutalist style hard shadow using Alky secondary red */
     box-shadow: 12px 12px 0px var(--secondary); 
-    animation: fadeInUp 0.6s ease-out; /* Uses animation defined in main.css */
+    animation: fadeInUp 0.6s ease-out; 
 }
 
-/* 3. Form States */
 .auth-form-box {
     display: none;
     animation: fadeIn 0.4s ease-in-out;
@@ -36,9 +31,8 @@
     display: block;
 }
 
-/* 4. Typography */
 .auth-container h2 {
-    font-family: 'Bebas Neue', sans-serif; /* Brand font */
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 3rem;
     color: var(--primary);
     margin-bottom: 1rem;
@@ -64,27 +58,24 @@
     width: 100%;
     padding: 0.9rem;
     border: 2px solid #EEEEEE;
-    font-family: 'Outfit', sans-serif; /* Body font */
+    font-family: 'Outfit', sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: var(--secondary); /* Red highlight on focus */
-}
+    border-color: var(--secondary); 
 
-/* 5. Validation & Errors */
 .error-msg {
     color: var(--secondary);
     font-size: 0.75rem;
     font-weight: 600;
     margin-top: 5px;
     display: block;
-    min-height: 1em; /* Prevents layout jumping */
+    min-height: 1em; 
 }
 
-/* 6. Interactive Elements */
 .auth-btn {
     width: 100%;
     background: var(--primary);
@@ -100,7 +91,7 @@
 }
 
 .auth-btn:hover {
-    background: var(--secondary); /* Turns red on hover */
+    background: var(--secondary); 
     transform: translateY(-2px);
 }
 
@@ -123,13 +114,11 @@
     color: var(--secondary);
 }
 
-/* 7. Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* 8. Responsiveness */
 @media (max-width: 480px) {
     .auth-container {
         padding: 1.8rem;
