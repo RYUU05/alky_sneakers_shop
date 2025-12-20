@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/auth.css" />
 </head>
 <body>
-<!-- ОБНОВЛЕННАЯ ШАПКА (С бургером и темой) -->
 <nav>
     <div class="logo">
         <a href="index.html" style="text-decoration:none; color:inherit;">ALKY</a>
@@ -29,23 +28,19 @@
 </nav>
 
 <main class="auth-page">
-    <!-- Фоновый узор -->
     <div class="hero-bg"></div>
 
     <div class="auth-container">
 
-        <!-- ФОРМА ВХОДА -->
         <div id="login-container" class="auth-form-box active">
             <h2>LOGIN</h2>
             <form id="login-form">
                 <div class="input-group">
                     <label>Email Address</label>
-                    <!-- autocomplete="email" помогает браузеру подставить почту -->
                     <input type="email" id="login-email" name="email" autocomplete="email" required />
                 </div>
                 <div class="input-group">
                     <label>Password</label>
-                    <!-- autocomplete="current-password" помогает вспомнить пароль -->
                     <input type="password" id="login-password" name="password" autocomplete="current-password" required />
                     <small class="error-msg" id="login-error"></small>
                 </div>
@@ -56,7 +51,6 @@
             </div>
         </div>
 
-        <!-- ФОРМА РЕГИСТРАЦИИ -->
         <div id="signup-container" class="auth-form-box">
             <h2>REGISTER</h2>
             <form id="signup-form">
@@ -85,7 +79,6 @@
                 </div>
                 <div class="input-group">
                     <label>Password</label>
-                    <!-- autocomplete="new-password" говорит браузеру: "предложи создать и сохранить пароль" -->
                     <input
                             type="password"
                             id="reg-password"
@@ -106,7 +99,6 @@
     </div>
 </main>
 
-<!-- Скрипты -->
 <script src="js/main.js"></script>
 <script src="js/auth.js"></script>
 </body>
