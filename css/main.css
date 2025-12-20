@@ -892,54 +892,68 @@ footer {
     .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
 }
 
-/* --- 3. DARK MODE (ТЕМНАЯ ТЕМА) --- */
-/* Стандартные переменные (Светлая) */
-:root {
-    --bg-color: #ffffff;
-    --text-color: #1a1a1a;
-    --card-bg: #ffffff;
-    --nav-bg: rgba(255, 255, 255, 0.95);
+
+
+.theme-btn:hover { transform: rotate(20deg); }
+
+/* --- BIG SUCCESS MODAL (Вместо маленького тоста) --- */
+.success-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: #ffffff;
+    padding: 2.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    text-align: center;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 300px;
 }
 
-/* Темная тема (активируется через атрибут data-theme="dark") */
-[data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #f0f0f0;
-    --card-bg: #1e1e1e;
-    --nav-bg: rgba(18, 18, 18, 0.95);
-    --bg-light: #1a1a1a; /* Для фона каталога */
-    --primary: #ffffff; /* Логотип становится белым */
-    --text-dark: #ffffff;
-    --white: #1e1e1e; /* Переопределяем белый на темный серый для карточек */
+.success-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
 }
 
-/* Применяем переменные */
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background 0.3s, color 0.3s;
-}
-
-nav { background: var(--nav-bg); }
-.product-card, .brand-card { background: var(--card-bg); border-color: #333; }
-.auth-container { background: var(--card-bg); }
-.nav-links a { color: var(--text-color); }
-.burger-menu div { background-color: var(--text-color); }
-
-.theme-btn {
-    background: none;
-    border: 2px solid var(--text-color);
+.modal-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--secondary); /* Красный круг */
+    color: #fff;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-color);
-    transition: transform 0.3s;
+    font-size: 2rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 10px 20px rgba(255, 59, 63, 0.3);
 }
-.theme-btn:hover { transform: rotate(20deg); }
+
+.modal-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.modal-text p {
+    margin-top: 0.5rem;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Темная тема для модалки */
+[data-theme="dark"] .success-modal {
+    background: #1e1e1e;
+    border: 1px solid #333;
+}
+[data-theme="dark"] .modal-text h3 { color: #fff; }
+[data-theme="dark"] .modal-text p { color: #aaa; }
 
 
